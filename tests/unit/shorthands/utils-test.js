@@ -31,9 +31,13 @@ test('it returns a string if it\'s a string', function(assert) {
 });
 
 test('url without id returns correct type', function (assert) {
+  var noQueryWithSlash = '/api/users/';
+  var noQueryWithoutSlash = '/api/users';
   var urlWithSlash = '/api/users/?test=true';
   var urlWithoutSlash = '/api/users?test=true';
   
-  assert.equal(utils.getTypeFromUrl(urlWithSlash), 'user', 'it returns a singular type');
-  assert.equal(utils.getTypeFromUrl(urlWithoutSlash), 'user', 'it returns a singular type');
+  assert.equal(utils.getTypeFromUrl(urlWithSlash), 'user', 'with slash returns a singular type');
+  assert.equal(utils.getTypeFromUrl(urlWithoutSlash), 'user', 'without slash returns a singular type');
+  assert.equal(utils.getTypeFromUrl(noQueryWithSlash), 'user', 'no query with slash returns a singular type');
+  assert.equal(utils.getTypeFromUrl(noQueryWithoutSlash), 'user', 'no query without slash returns a singular type');
 });
